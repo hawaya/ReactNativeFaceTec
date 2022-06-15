@@ -3,6 +3,8 @@ package org.gooddollar.facetec.util;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
+
 
 import com.facetec.sdk.FaceTecCustomization;
 import com.facetec.sdk.FaceTecOverlayCustomization;
@@ -41,18 +43,39 @@ public class Customization {
   final private static int darkGray = Color.DKGRAY;
   final private static int lightGray = Color.LTGRAY;
   final private static int textColor = 0x1E1E1E;
-  final private static int buttonColor = 0xff06E8B2;
+
+  final private static int HawayaGreen = 0x29DACA;
+  final private static int HawayaBlack = 0x2B303A;
+  final private static int HawayaBlue = 0x13E0EA;
+  
+  // default : final private static int buttonColor = 0xff06E8B2;
+  final private static int buttonColor = HawayaGreen;
 
   final private static int primary = /*0xff00afff*/ buttonColor;
   final private static int gray50Percent = 0xffcbcbcb;
 
-  final private static int defaultCornerRadius = 5;
-  final private static int buttonCornerRadius = 12;
+
+    /*
+    default:
+    final private static int defaultCornerRadius = 5;
+    final private static int buttonCornerRadius = 12;
+    */
+
+  final private static int defaultCornerRadius = 30;
+  final private static int buttonCornerRadius = 30;
 
   // "sans-serif" family resolves to the Roboto font
-  final private static Typeface defaultFont = Typeface.create("sans-serif", Typeface.NORMAL);
-  final private static Typeface mediumFont = Typeface.create("sans-serif-medium", Typeface.NORMAL);
-  final private static Typeface boldFont = Typeface.create("sans-serif", Typeface.BOLD);
+  // override font family
+  final private static Typeface.Builder builderDefault = new Typeface.Builder("./assets/fonts/Omnes Regular.ttf");
+  final private static  Typeface typefaceDefault = builderDefault.build();
+  final private static Typeface.Builder builderSemiBold = new Typeface.Builder("./assets/fonts/Omnes Regular.ttf");
+  final private static  Typeface typefaceSemiBold = builderSemiBold.build();
+  final private static Typeface.Builder builderBold = new Typeface.Builder("./assets/fonts/Omnes Regular.ttf");
+  final private static  Typeface typefaceBold = builderBold.build();
+
+  final private static Typeface defaultFont = Typeface.create(typefaceDefault, Typeface.NORMAL);
+  final private static Typeface mediumFont = Typeface.create(typefaceSemiBold, Typeface.NORMAL);
+  final private static Typeface boldFont = Typeface.create(typefaceBold, Typeface.BOLD);
 
   static {
     // customize Dynamic dimming & low light mode UI
@@ -112,9 +135,12 @@ public class Customization {
 
     // setting oval border color & width
     oval.strokeWidth = 6;
-    oval.strokeColor = primary;
-    oval.progressColor1 = buttonColor;
-    oval.progressColor2 = buttonColor;
+    //default: oval.strokeColor = primary;
+    oval.strokeColor = HawayaBlack;
+    //default: oval.progressColor1 = buttonColor;
+    oval.progressColor1 = HawayaBlack;
+    //default: oval.progressColor2 = buttonColor;
+    oval.progressColor2 = HawayaBlack;
 
     // frame (zoom's popup) customizations
     // setting frame border, radius & elevation
@@ -137,9 +163,15 @@ public class Customization {
     guidance.buttonTextNormalColor = black;
     guidance.buttonTextHighlightColor = black;
     guidance.buttonTextDisabledColor = black;
+   /*
+    default :
     guidance.buttonBackgroundNormalColor = primary;
     guidance.buttonBackgroundHighlightColor = primary;
     guidance.buttonBackgroundDisabledColor = primary;
+     */
+    guidance.buttonBackgroundNormalColor = HawayaGreen;
+    guidance.buttonBackgroundHighlightColor = HawayaGreen;
+    guidance.buttonBackgroundDisabledColor = HawayaGreen;
 
     // customizing header / subtext
     guidance.headerFont = boldFont;
@@ -148,8 +180,13 @@ public class Customization {
     guidance.subtextFont = defaultFont;
 
     // configuring guidance images on retry screen
+    /*
+    default :
     guidance.retryScreenOvalStrokeColor = primary;
     guidance.retryScreenImageBorderColor = primary;
+    */
+    guidance.retryScreenOvalStrokeColor = HawayaBlack;
+    guidance.retryScreenImageBorderColor = HawayaBlack;
     guidance.retryScreenImageBorderWidth = 4;
     guidance.retryScreenImageCornerRadius = defaultCornerRadius;
 
